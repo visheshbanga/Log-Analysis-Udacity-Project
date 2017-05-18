@@ -16,8 +16,9 @@ def connect(dbname="news"):
 def view_popular_article():
     try:
         db, c = connect()
-        query = "create or replace view popular_articles as select title,count(title)\
-        as views from articles,log where log.path = concat('/article/',articles.slug)\
+        query = "create or replace view popular_articles as\
+        select title,count(title) as views from articles,log\
+        where log.path = concat('/article/',articles.slug)\
         group by title order by views desc"
         c.execute(query)
         db.commit()
@@ -43,8 +44,9 @@ def view_log_status():
         db, c = connect()
         query = "create or replace view log_status as select Date,Total,Error,\
         (Error::float*100)/Total::float as Percent from\
-        (select time::timestamp::date as Date, count(status) as Total, sum(case when status =\
-        '404 NOT FOUND' then 1 else 0 end) as Error from log group by time::timestamp::date) as\
+        (select time::timestamp::date as Date, count(status) as Total,\
+        sum(case when status = '404 NOT FOUND' then 1 else 0 end) as Error\
+        from log group by time::timestamp::date) as\
         result order by Percent desc;"
         c.execute(query)
         db.commit()
