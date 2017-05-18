@@ -54,6 +54,8 @@ result order by Percent desc;
 * <h4>Start the virtual machine</h4>
   From your terminal, inside the log subdirectory, run the command `vagrant up`. This will cause Vagrant to download the Linux operating   system and install it.
   When vagrant up is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your     newly installed Linux VM!
+* <h4>Download the <a href="https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip">data</a></h4>
+  You will need to unzip this file after downloading it. The file inside is called newsdata.sql. Put this file into the vagrant           directory, which is shared with your virtual machine.
 * <h4>Setup Database</h4>
   To load the database use the following command:
   <pre>psql -d news -f newsdata.sql;</pre>
