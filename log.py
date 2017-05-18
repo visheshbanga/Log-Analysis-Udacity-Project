@@ -62,7 +62,7 @@ def popular_article():
     result = c.fetchall()
     db.close()
     print "\nPopular Articles:\n"
-    for i in range(0, len(result), 1):
+    for i in range(0, 3, 1):
         print "\"" + result[i][0] + "\" - " + str(result[i][1]) + " views"
 
         
