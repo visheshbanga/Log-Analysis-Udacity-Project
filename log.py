@@ -4,7 +4,7 @@ import psycopg2
 
 
 def connect(dbname="news"):
-    """Connect to the PostgreSQL database. Returns a database connection."""
+    """Connect to the PostgreSQL database and returns a database connection."""
     try:
         db = psycopg2.connect("dbname={}".format(dbname))
         c = db.cursor()
