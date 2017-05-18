@@ -65,7 +65,7 @@ def popular_article():
     for i in range(0, 3, 1):
         print "\"" + result[i][0] + "\" - " + str(result[i][1]) + " views"
 
-        
+
 def popular_authors():
     """Prints most popular article authors of all time"""
     db, c = connect()
@@ -77,7 +77,7 @@ def popular_authors():
     for i in range(0, len(result), 1):
         print "\"" + result[i][0] + "\" - " + str(result[i][1]) + " views"
 
-        
+
 def log_status():
     """Print days on which more than 1% of requests lead to errors"""
     db, c = connect()
