@@ -61,3 +61,7 @@ result order by Percent desc;
   Make views by running respective queries on command line or uncomment code written in python module.
 * <h4>Run Module</h4>
   <pre>python log.py</pre>
+  
+### Output:
+![Screenshot.jpg](https://github.com/visheshbanga/Log-Analysis-Udacity-Project/blob/master/Screenshot.JPG)
+
