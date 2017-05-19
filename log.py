@@ -26,6 +26,7 @@ def view_popular_article():
     except:
         print("Error in creating view popular_articles")
 
+
 def view_popular_authors():
     try:
         db, c = connect()
@@ -39,6 +40,7 @@ def view_popular_authors():
     except:
         print("Error in creating view popular_authors")
 
+
 def view_log_status():
     try:
         db, c = connect()
@@ -46,8 +48,8 @@ def view_log_status():
         (Error::float*100)/Total::float as Percent from\
         (select time::timestamp::date as Date, count(status) as Total,\
         sum(case when status = '404 NOT FOUND' then 1 else 0 end) as Error\
-        from log group by time::timestamp::date) as\
-        result order by Percent desc;"
+        from log group by time::timestamp::date) as result\
+        where (Error::float*100)/Total::float > 1.0 order by Percent desc;"
         c.execute(query)
         db.commit()
         db.close()
@@ -59,12 +61,12 @@ def view_log_status():
 def popular_article():
     """Prints most popular three articles of all time"""
     db, c = connect()
-    query = "select * from popular_articles"
+    query = "select * from popular_articles limit 3"
     c.execute(query)
     result = c.fetchall()
     db.close()
     print "\nPopular Articles:\n"
-    for i in range(0, 3, 1):
+    for i in range(0, len(result), 1):
         print "\"" + result[i][0] + "\" - " + str(result[i][1]) + " views"
 
 
@@ -89,11 +91,7 @@ def log_status():
     db.close()
     print "\nDays with more than 1% of errors:\n"
     for i in range(0, len(result), 1):
-        if result[i][3] > 1:
-            print str(result[i][0]) + " - " + str(round(result[i][3], 2)) +\
-                "% errors"
-        else:
-            break
+        print str(result[i][0])+ " - "+str(round(result[i][3], 2))+"% errors"
 
 if __name__ == '__main__':
     # uncomment the below code to make views
