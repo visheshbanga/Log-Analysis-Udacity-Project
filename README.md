@@ -43,8 +43,8 @@ create or replace view log_status as
 select Date,Total,Error, (Error::float*100)/Total::float as Percent from
 (select time::timestamp::date as Date, count(status) as Total,
 sum(case when status = '404 NOT FOUND' then 1 else 0 end) as Error from log
-group by time::timestamp::date) as
-result order by Percent desc;
+group by time::timestamp::date) as result
+where (Error::float*100)/Total::float > 1.0 order by Percent desc;
 ```
 
 ## Instructions
