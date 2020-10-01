@@ -1,5 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+# importent
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04-i386"
